@@ -2,6 +2,7 @@ package test
 
 import (
 	"os"
+	"strings"
 	"testing"
 
 	"github.com/gruntwork-io/terratest/modules/terraform"
@@ -14,7 +15,7 @@ func TestMyModule(t *testing.T) {
 		TerraformDir: "../examples/build",
 		Vars: map[string]interface{}{
 			"gh_run_id": os.Getenv("GITHUB_RUN_ID"),
-			"gh_repo":   "terraform-azurerm-linuxvm",
+			"gh_repo":   strings.replace(os.Getenv("GITHUB_REPOSITORY"), "/", "-"),
 		},
 	})
 
