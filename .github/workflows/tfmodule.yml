@@ -14,8 +14,6 @@ env:
   ARM_SUBSCRIPTION_ID: 'e5c064d7-9c8f-4e8d-ba57-5da9f1610cb3'
   ARM_TENANT_ID: 'ea7c73d0-fb18-4161-8331-8341717ba99c'
   TF_CLI_VERSION: '1.0.9'
-  TF_VAR_gh_run_id: ${{ GITHUB_RUN_ID }}
-  TF_VAR_gh_repo: ${{ GITHUB_REPOSITORY }}
 
 jobs:
   # tflint:
@@ -72,6 +70,9 @@ jobs:
     - name: Test
       working-directory: tests
       run: go test -v
+      env:
+        TF_VAR_gh_run_id: ${{ env.GITHUB_RUN_ID }}
+        TF_VAR_gh_repo: ${{ env.GITHUB_REPOSITORY }}
 
     - name: Bump version and push tag
       id: tag_version
