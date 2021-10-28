@@ -4,10 +4,10 @@ provider "azurerm" {
 
 module "linuxvm" {
   source    = "../.."
-  tags      = merge(local.tags, { consul_auto_join = "clam" })
+  tags      = local.tags
   rg_name   = azurerm_resource_group.terratest.name
   subnet_id = azurerm_subnet.terratest.id
-  vm_name   = each.key
+  vm_name   = local.vm_name
   ssh_key   = tls_private_key.terratest.public_key_openssh
 }
 
