@@ -1,6 +1,7 @@
 package test
 
 import (
+	"os"
 	"testing"
 
 	"github.com/gruntwork-io/terratest/modules/terraform"
@@ -11,6 +12,10 @@ func TestMyModule(t *testing.T) {
 	// retryable errors in terraform testing.
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
 		TerraformDir: "../examples/build",
+		Vars: map[string]interface{}{
+			"gh_run_id": os.Getenv("GITHUB_RUN_ID"),
+			"gh_repo":   "terraform-azurerm-linuxvm",
+		},
 	})
 
 	defer terraform.Destroy(t, terraformOptions)
