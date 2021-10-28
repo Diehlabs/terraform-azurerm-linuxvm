@@ -13,6 +13,13 @@ variable "ssh_key" {
   })
 }
 
-variable "msi" {}
+variable "availability_set_id" {
+  description = "Optional availability set to add the VM to"
+  default     = null
+}
 
-variable "availability_set_id" {}
+variable "nsg_rules" {
+  description = "Additional NSG rules to add to the VM network interface"
+  type        = map(any)
+  default     = {}
+}
