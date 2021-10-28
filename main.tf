@@ -64,15 +64,15 @@ resource "azurerm_network_security_group" "vm" {
   dynamic "security_rule" {
     for_each = merge(local.nsg_rules, var.nsg_rules)
     content {
-      name                       = each.key
-      priority                   = each.value.priority
-      direction                  = each.value.direction
-      access                     = each.value.access
-      protocol                   = each.value.protocol
-      source_port_range          = each.value.source_port_range
-      destination_port_range     = each.value.destination_port_range
-      source_address_prefix      = each.value.source_address_prefix
-      destination_address_prefix = each.value.destination_address_prefix
+      name                       = security_rule.key
+      priority                   = security_rule.value.priority
+      direction                  = security_rule.value.direction
+      access                     = security_rule.value.access
+      protocol                   = security_rule.value.protocol
+      source_port_range          = security_rule.value.source_port_range
+      destination_port_range     = security_rule.value.destination_port_range
+      source_address_prefix      = security_rule.value.source_address_prefix
+      destination_address_prefix = security_rule.value.destination_address_prefix
     }
   }
 }
