@@ -70,8 +70,8 @@ jobs:
     - name: Test
       working-directory: tests
       run: |
-        echo "TF_VAR_gh_run_id: ${TF_VAR_gh_run_id}"
-        echo "TF_VAR_gh_repo: ${TF_VAR_gh_repo}"
+        echo "TF_VAR_gh_run_id: ${{ env.GITHUB_RUN_ID }"
+        echo "TF_VAR_gh_repo: ${{ env.TF_VAR_gh_repo }}"
         go test -v
       env:
         TF_VAR_gh_run_id: ${{ env.GITHUB_RUN_ID }}
