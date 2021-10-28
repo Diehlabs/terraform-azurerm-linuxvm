@@ -15,7 +15,7 @@ func TestMyModule(t *testing.T) {
 		TerraformDir: "../examples/build",
 		Vars: map[string]interface{}{
 			"gh_run_id": os.Getenv("GITHUB_RUN_ID"),
-			"gh_repo":   strings.Replace(os.Getenv("GITHUB_REPOSITORY"), "//", "-"),
+			"gh_repo":   strings.Replace(os.Getenv("GITHUB_REPOSITORY"), "/", "-", -1),
 		},
 	})
 
