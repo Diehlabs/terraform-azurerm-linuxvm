@@ -35,6 +35,7 @@ No modules.
 | [azurerm_network_interface.vm](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_interface) | resource |
 | [azurerm_network_interface_security_group_association.vm](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_interface_security_group_association) | resource |
 | [azurerm_network_security_group.vm](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_security_group) | resource |
+| [azurerm_network_security_rule.vm](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_security_rule) | resource |
 | [azurerm_public_ip.vm_pub_ip](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/public_ip) | resource |
 
 ## Inputs
@@ -58,6 +59,7 @@ No modules.
 | <a name="output_ip_addresses"></a> [ip\_addresses](#output\_ip\_addresses) | n/a |
 | <a name="output_msi"></a> [msi](#output\_msi) | n/a |
 | <a name="output_nic_id"></a> [nic\_id](#output\_nic\_id) | n/a |
+| <a name="output_nsg_rules"></a> [nsg\_rules](#output\_nsg\_rules) | n/a |
 | <a name="output_public_ip"></a> [public\_ip](#output\_public\_ip) | n/a |
 | <a name="output_vm_name"></a> [vm\_name](#output\_vm\_name) | n/a |
 <!-- END_TF_DOCS -->
