@@ -85,5 +85,3 @@ jobs:
         name: Release ${{ steps.tag_version.outputs.new_tag }}
         body: ${{ steps.tag_version.outputs.changelog }}
       if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-
-  # tag_repo:

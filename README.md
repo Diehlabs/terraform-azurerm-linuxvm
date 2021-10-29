@@ -44,6 +44,7 @@ No modules.
 | <a name="input_availability_set_id"></a> [availability\_set\_id](#input\_availability\_set\_id) | Optional availability set to add the VM to | `any` | `null` | no |
 | <a name="input_nsg_rules"></a> [nsg\_rules](#input\_nsg\_rules) | Additional NSG rules to add to the VM network interface | `map(any)` | `{}` | no |
 | <a name="input_rg_name"></a> [rg\_name](#input\_rg\_name) | n/a | `any` | n/a | yes |
+| <a name="input_size"></a> [size](#input\_size) | n/a | `string` | `"Standard_B1ls"` | no |
 | <a name="input_ssh_key"></a> [ssh\_key](#input\_ssh\_key) | PEM formatted private ssh key | `string` | n/a | yes |
 | <a name="input_subnet_id"></a> [subnet\_id](#input\_subnet\_id) | n/a | `any` | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | n/a | `any` | n/a | yes |

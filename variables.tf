@@ -21,3 +21,7 @@ variable "nsg_rules" {
   type        = map(any)
   default     = {}
 }
+
+variable "size" {
+  default = "Standard_B1ls"
+}
