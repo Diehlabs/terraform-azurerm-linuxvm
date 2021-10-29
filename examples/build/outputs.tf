@@ -8,5 +8,9 @@ output "resource_group_name" {
 }
 
 output "nsg_rules" {
-  value = module.linuxvm.nsg_rules
+  value = module.linuxvm.nsg.rules
+}
+
+output "nsg_name" {
+  value = module.linuxvm.nsg.name
 }
