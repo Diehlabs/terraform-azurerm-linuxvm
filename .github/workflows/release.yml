@@ -1,8 +1,11 @@
-name: Terraform Module Build
+name: Release
 on:
-  push:
+  workflow_run:
+    workflows: ["Terraform Tests"]
     branches:
-      - 'main'
+      - "main"
+    types:
+      - completed
 
 jobs:
   release:
