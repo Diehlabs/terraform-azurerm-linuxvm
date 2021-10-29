@@ -11,10 +11,10 @@ import (
 )
 
 func TestMyModule(t *testing.T) {
-	os.Setenv("AZURE_TENANT_ID", os.GetEnv("ARM_TENANT_ID"))
-	os.Setenv("AZURE_CLIENT_ID", os.GetEnv("ARM_CLIENT_ID"))
-	os.Setenv("AZURE_CLIENT_SECRET", os.GetEnv("ARM_CLIENT_SECRET"))
-	os.Setenv("AZURE_SUBSCRIPTION_ID", os.GetEnv("ARM_SUBSCRIPTION_ID"))
+	os.Setenv("AZURE_TENANT_ID", os.Getenv("ARM_TENANT_ID"))
+	os.Setenv("AZURE_CLIENT_ID", os.Getenv("ARM_CLIENT_ID"))
+	os.Setenv("AZURE_CLIENT_SECRET", os.Getenv("ARM_CLIENT_SECRET"))
+	os.Setenv("AZURE_SUBSCRIPTION_ID", os.Getenv("ARM_SUBSCRIPTION_ID"))
 
 	t.Parallel()
 	// retryable errors in terraform testing.
