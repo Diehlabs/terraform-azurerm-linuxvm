@@ -2,7 +2,8 @@ name: Release
 on:
   workflow_run:
     workflows: ["Terraform Tests"]
-    branches: [main]
+    branches:
+      - "main"
     types:
       - completed
 
