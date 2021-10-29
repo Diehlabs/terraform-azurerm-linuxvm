@@ -9,6 +9,7 @@ module "linuxvm" {
   subnet_id = azurerm_subnet.terratest.id
   vm_name   = local.vm_name
   ssh_key   = tls_private_key.terratest.public_key_openssh
+  nsg_rules = local.nsg_rules
 }
 
 resource "azurerm_resource_group" "terratest" {

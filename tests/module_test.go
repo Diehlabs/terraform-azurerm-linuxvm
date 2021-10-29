@@ -11,6 +11,11 @@ import (
 )
 
 func TestMyModule(t *testing.T) {
+	os.Setenv("AZURE_TENANT_ID", os.Getenv("ARM_TENANT_ID"))
+	os.Setenv("AZURE_CLIENT_ID", os.Getenv("ARM_CLIENT_ID"))
+	os.Setenv("AZURE_CLIENT_SECRET", os.Getenv("ARM_CLIENT_SECRET"))
+	os.Setenv("AZURE_SUBSCRIPTION_ID", os.Getenv("ARM_SUBSCRIPTION_ID"))
+
 	t.Parallel()
 	// retryable errors in terraform testing.
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
@@ -25,37 +30,27 @@ func TestMyModule(t *testing.T) {
 
 	terraform.InitAndApply(t, terraformOptions)
 
-	terraform.ApplyAndIdempotent(t, terraformOptions)
+	// terraform.ApplyAndIdempotent(t, terraformOptions)
 
 	resourceGroupName := terraform.Output(t, terraformOptions, "resource_group_name")
 	nsgName := terraform.Output(t, terraformOptions, "nsg_name")
 	// sshRuleName := terraform.Output(t, terraformOptions, "ssh_rule_name")
-	// httpRuleName := terraform.Output(t, terraformOptions, "http_rule_name")
+	// httpsRuleName := terraform.Output(t, terraformOptions, "https_rule_name")
 
 	// A default NSG has 6 rules, and we have two custom rules for a total of 8
 	rules, err := azure.GetAllNSGRulesE(resourceGroupName, nsgName, "")
 	assert.NoError(t, err)
 	assert.Equal(t, 8, len(rules.SummarizedRules))
 
+	// ssh rule is contained in the module
+	sshRule := rules.FindRuleByName("SSH")
+	assert.True(t, sshRule.AllowsDestinationPort(t, "22"))
+	assert.False(t, sshRule.AllowsDestinationPort(t, "80"))
+	assert.True(t, sshRule.AllowsSourcePort(t, "*"))
+
+	// https rule is passed to the module
+	httpsRule := rules.FindRuleByName("HTTPS")
+	assert.True(t, httpsRule.AllowsDestinationPort(t, "443"))
+	assert.False(t, httpsRule.AllowsDestinationPort(t, "80"))
+	assert.True(t, httpsRule.AllowsSourcePort(t, "*"))
 }
-
-// func TestTerraformAzureNsgExample(t *testing.T) {
-
-// 	// We should have a rule for allowing ssh
-// 	sshRule := rules.FindRuleByName(sshRuleName)
-
-// 	// That rule should allow port 22 inbound
-// 	assert.True(t, sshRule.AllowsDestinationPort(t, "22"))
-
-// 	// But should not allow 80 inbound
-// 	assert.False(t, sshRule.AllowsDestinationPort(t, "80"))
-
-// 	// SSh is allowed from any port
-// 	assert.True(t, sshRule.AllowsSourcePort(t, "*"))
-
-// 	// We should have a rule for blocking HTTP
-// 	httpRule := rules.FindRuleByName(httpRuleName)
-
-// 	// This rule should BLOCK port 80 inbound
-// 	assert.False(t, httpRule.AllowsDestinationPort(t, "80"))
-// }
