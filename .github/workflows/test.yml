@@ -1,4 +1,4 @@
-name: Terraform Module Build
+name: Terraform Tests
 on:
   push:
     branches:
