@@ -2,11 +2,13 @@ name: Terraform Tests
 on:
   push:
     branches:
-      - '*'
+      - '**'
   pull_request:
     branches:
       - 'main'
   workflow_dispatch:
+    branches:
+      - '**'
 
 env:
   ARM_CLIENT_ID: '2c7dadc2-5dba-4670-b798-27d59a430217'
@@ -48,7 +50,7 @@ jobs:
 
   terratest_job:
     runs-on: ubuntu-latest
-    name: terratest-action
+    name: terratest
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2

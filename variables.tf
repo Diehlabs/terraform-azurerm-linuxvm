@@ -29,5 +29,4 @@ variable "size" {
 variable "identity_ids" {
   description = "List of identities to assign to the VM"
   type        = list(string)
-  default     = []
 }
