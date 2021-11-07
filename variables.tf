@@ -25,3 +25,9 @@ variable "nsg_rules" {
 variable "size" {
   default = "Standard_B1ls"
 }
+
+variable "identity_ids" {
+  description = "List of identities to assign to the VM"
+  type        = list(string)
+  default     = []
+}
