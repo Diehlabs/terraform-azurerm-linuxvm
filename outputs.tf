@@ -21,3 +21,12 @@ output "nic_id" {
 output "msi" {
   value = azurerm_linux_virtual_machine.vm.identity
 }
+
+output "nsg" {
+  value = {
+    name = azurerm_network_security_group.vm.name
+    rules = { for name, rule in merge(local.nsg_rules, var.nsg_rules) :
+      name => azurerm_network_security_rule.vm[name]
+    }
+  }
+}

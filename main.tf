@@ -62,23 +62,24 @@ resource "azurerm_network_security_group" "vm" {
   name                = "${azurerm_linux_virtual_machine.vm.name}-nsg"
   location            = var.tags.location
   resource_group_name = var.rg_name
-  dynamic "security_rule" {
-    for_each = merge(local.nsg_rules, var.nsg_rules)
-    content {
-      name                       = security_rule.key
-      priority                   = security_rule.value.priority
-      direction                  = security_rule.value.direction
-      access                     = security_rule.value.access
-      protocol                   = security_rule.value.protocol
-      source_port_range          = security_rule.value.source_port_range
-      destination_port_range     = security_rule.value.destination_port_range
-      source_address_prefix      = security_rule.value.source_address_prefix
-      destination_address_prefix = security_rule.value.destination_address_prefix
-    }
-  }
 }
 
 resource "azurerm_network_interface_security_group_association" "vm" {
   network_interface_id      = azurerm_network_interface.vm.id
   network_security_group_id = azurerm_network_security_group.vm.id
+}
+
+resource "azurerm_network_security_rule" "vm" {
+  for_each                    = merge(local.nsg_rules, var.nsg_rules)
+  name                        = each.key
+  priority                    = each.value.priority
+  direction                   = each.value.direction
+  access                      = each.value.access
+  protocol                    = each.value.protocol
+  source_port_range           = each.value.source_port_range
+  destination_port_range      = each.value.destination_port_range
+  source_address_prefix       = each.value.source_address_prefix
+  destination_address_prefix  = each.value.destination_address_prefix
+  resource_group_name         = azurerm_network_security_group.vm.resource_group_name
+  network_security_group_name = azurerm_network_security_group.vm.name
 }
