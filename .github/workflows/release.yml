@@ -1,11 +1,20 @@
 name: Release
 on:
-  workflow_run:
-    workflows: ["Terraform Tests"]
+  # workflow_run:
+  #   workflows: ["Terraform Tests"]
+  #   branches:
+  #     - "main"
+  #   types:
+  #     - completed
+  push:
     branches:
-      - "main"
-    types:
-      - completed
+      - 'main'
+  pull_request:
+    branches:
+      - 'main'
+  workflow_dispatch:
+    branches:
+      - 'main'
 
 jobs:
   release:
