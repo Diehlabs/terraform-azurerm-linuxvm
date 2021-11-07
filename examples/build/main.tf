@@ -10,7 +10,7 @@ module "linuxvm" {
   vm_name      = local.vm_name
   ssh_key      = tls_private_key.terratest.public_key_openssh
   nsg_rules    = local.nsg_rules
-  identity_ids = azurerm_user_assigned_identity.terratest.id
+  identity_ids = [azurerm_user_assigned_identity.terratest.id]
 }
 
 resource "azurerm_resource_group" "terratest" {
