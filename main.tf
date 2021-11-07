@@ -42,7 +42,8 @@ resource "azurerm_linux_virtual_machine" "vm" {
   }
 
   identity {
-    type = "SystemAssigned"
+    type         = "SystemAssigned"
+    identity_ids = var.identity_ids
   }
 
   tags = var.tags

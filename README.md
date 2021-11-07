@@ -42,6 +42,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_availability_set_id"></a> [availability\_set\_id](#input\_availability\_set\_id) | Optional availability set to add the VM to | `any` | `null` | no |
+| <a name="input_identity_ids"></a> [identity\_ids](#input\_identity\_ids) | List of identities to assign to the VM | `list(string)` | `[]` | no |
 | <a name="input_nsg_rules"></a> [nsg\_rules](#input\_nsg\_rules) | Additional NSG rules to add to the VM network interface | `map(any)` | `{}` | no |
 | <a name="input_rg_name"></a> [rg\_name](#input\_rg\_name) | n/a | `any` | n/a | yes |
 | <a name="input_size"></a> [size](#input\_size) | n/a | `string` | `"Standard_B1ls"` | no |
