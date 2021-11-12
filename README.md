@@ -62,5 +62,6 @@ No modules.
 | <a name="output_nic_id"></a> [nic\_id](#output\_nic\_id) | n/a |
 | <a name="output_nsg"></a> [nsg](#output\_nsg) | n/a |
 | <a name="output_public_ip"></a> [public\_ip](#output\_public\_ip) | n/a |
+| <a name="output_vm_id"></a> [vm\_id](#output\_vm\_id) | n/a |
 | <a name="output_vm_name"></a> [vm\_name](#output\_vm\_name) | n/a |
 <!-- END_TF_DOCS -->
