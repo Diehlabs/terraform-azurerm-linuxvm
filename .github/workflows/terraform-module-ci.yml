@@ -13,6 +13,14 @@ env:
   TFLINT_VERSION: 'v0.34.1'
 
 jobs:
+  debug:
+    runs-on: ubuntu-latest
+    name: debug-me
+    steps:
+      - run: echo ${ARM_SUBSCRIPTION_ID}
+    env:
+      ARM_SUBSCRIPTION_ID:  ${{ secrets.ARM_SUBSCRIPTION_ID }}
+
   tflint:
     uses: Diehlabs/shared-workflows/.github/workflows/tflint.yml@feature/develop
 
