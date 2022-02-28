@@ -1,0 +1,36 @@
+name: Terraform Module Build
+on:
+  push:
+    branches:
+      - '**'
+  pull_request:
+    branches:
+      - 'main'
+  workflow_dispatch:
+
+env:
+  TERRAFORM_VERSION: '1.1.6'
+  TFLINT_VERSION: 'v0.34.1'
+
+jobs:
+  tflint:
+    uses: Diehlabs/shared-workflows/.github/workflows/tflint.yml@feature/develop
+
+  checkov:
+    uses: Diehlabs/shared-workflows/.github/workflows/checkov.yml@feature/develop
+    with:
+      directory: ${{ github.workspace }}/examples/build
+    needs: tflint
+    if: success()
+
+  terratest:
+    uses: Diehlabs/shared-workflows/.github/workflows/terratest.yml@feature/develop
+    needs: tflint
+    if: success()
+
+  release:
+    uses: Diehlabs/shared-workflows/.github/workflows/github-release.yml@feature/develop
+    needs:
+      - tflint
+      - terratest
+    if: success() && github.ref == 'refs/heads/main'
