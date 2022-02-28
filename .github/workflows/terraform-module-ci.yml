@@ -11,6 +11,10 @@ on:
 env:
   TERRAFORM_VERSION: '1.1.6'
   TFLINT_VERSION: 'v0.34.1'
+  ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+  ARM_CLIENT_SECRET:  ${{ secrets.ARM_CLIENT_SECRET }}
+  ARM_TENANT_ID:  ${{ secrets.ARM_TENANT_ID }}
+  ARM_SUBSCRIPTION_ID:  ${{ secrets.ARM_SUBSCRIPTION_ID }}
 
 jobs:
   tflint:
