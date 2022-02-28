@@ -63,7 +63,7 @@ func (r *RunSettings) setTerraformOptions() {
 	if ghRepo := os.Getenv("GITHUB_REPOSITORY"); ghRepo != "" {
 		repoName = strings.Replace(ghRepo, "/", "-", -1)
 	}
-	
+
 
 	// Construct the terraform options with default retryable errors to handle the most common
 	// retryable errors in terraform testing.

@@ -5,3 +5,4 @@
 .test-data
 **.tfstate*
 .DS_Store
+*.go
