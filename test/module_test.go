@@ -118,6 +118,14 @@ func (r *RunSettings) redeployUsingTerraform() {
 }
 
 func (r *RunSettings) runTests() {
+	// start - temp work
+	// set xtra vars - will be replaced with go module to pull all secrets from vault
+	os.Setenv("AZURE_TENANT_ID", os.Getenv("ARM_TENANT_ID"))
+	os.Setenv("AZURE_CLIENT_ID", os.Getenv("ARM_CLIENT_ID"))
+	os.Setenv("AZURE_CLIENT_SECRET", os.Getenv("ARM_CLIENT_SECRET"))
+	os.Setenv("AZURE_SUBSCRIPTION_ID", os.Getenv("ARM_SUBSCRIPTION_ID"))
+	// end - temp work
+
 	terraformOptions := test_structure.LoadTerraformOptions(r.t, r.workingDir)
 
 	resourceGroupName := terraform.Output(r.t, terraformOptions, "resource_group_name")
