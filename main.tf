@@ -70,7 +70,7 @@ resource "azurerm_network_interface_security_group_association" "vm" {
 }
 
 resource "azurerm_network_security_rule" "vm" {
-  for_each                    = merge(local.nsg_rules, var.nsg_rules)
+  for_each                    = var.nsg_rules
   name                        = each.key
   priority                    = each.value.priority
   direction                   = each.value.direction

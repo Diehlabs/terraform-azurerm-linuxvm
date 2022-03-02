@@ -64,4 +64,5 @@ No modules.
 | <a name="output_public_ip"></a> [public\_ip](#output\_public\_ip) | n/a |
 | <a name="output_vm_id"></a> [vm\_id](#output\_vm\_id) | n/a |
 | <a name="output_vm_name"></a> [vm\_name](#output\_vm\_name) | n/a |
+| <a name="output_vm_size"></a> [vm\_size](#output\_vm\_size) | n/a |
 <!-- END_TF_DOCS -->
