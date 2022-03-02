@@ -13,42 +13,6 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-// type RunSettings struct {
-// 	t                         *testing.T
-// 	workingDir                string `default:"../examples/build"`
-// 	tfCliPath                 string `default:"/usr/local/bin/terraform"`
-// 	approleID                 string
-// 	// secretID                  *auth.SecretID
-// 	vaultSecretPath           string
-// 	uniqueID                  string
-// }
-
-// func (r *RunSettings) setDefaults() {
-// 	if t == nil {
-// 		panic("No Terratest module provided")
-// 	}
-
-// 	// VAULT items are used for interaction with HashiCorp Vault
-// 	if vsecp := os.Getenv("VAULT_SECRET_PATH"); vsecp != "" {
-// 		r.vaultSecretPath = vsecp
-// 	}
-
-// 	if role_id := os.Getenv("VAULT_APPROLE_ID"); role_id != "" {
-// 		r.approleID = role_id
-// 	}
-
-// 	// if wrapped_token := os.Getenv("VAULT_WRAPPED_TOKEN"); wrapped_token != "" {
-// 	// 	r.secretID = &auth.SecretID{FromEnv: "VAULT_WRAPPED_TOKEN"}
-// 	// }
-
-// 	if localId := os.Getenv("GITHUB_RUN_ID"); localId != "" {
-// 		r.uniqueID = localId
-// 	} else {
-// 		r.uniqueID = random.UniqueId()
-// 	}
-// }
-
-
 var uniqueId = random.UniqueId()
 
 var terraformBinary = "/usr/local/bin/terraform"
@@ -75,6 +39,7 @@ func TestTerraformModule(t *testing.T) {
 		"gh_run_id": uniqueId,
 		"gh_repo": fmt.Sprintf("terratest-local-%s", uniqueId),
 	}
+
 	setupTesting(t, workingDir, terraformBinary, terraformVars)
 
 	// Destroy the infra after testing is finished
@@ -105,7 +70,16 @@ func TestTerraformModule(t *testing.T) {
 
 }
 
+func setEnvVars() {
+	os.Setenv("AZURE_TENANT_ID") = os.Getenv("ARM_TENANT_ID")
+	os.Setenv("AZURE_CLIENT_ID") = os.Getenv("ARM_CLIENT_ID"),
+	os.Setenv("AZURE_CLIENT_SECRET") = os.Getenv("ARM_CLIENT_SECRET"),
+	os.Setenv("AZURE_SUBSCRIPTION_ID") = os.Getenv("ARM_SUBSCRIPTION_ID"),
+}
+
 func testNsgRules(t *testing.T, terraformOptions *terraform.Options, workingDir string, resourceGroupName string) {
+	setEnvVars()
+
 	nsgName := terraform.Output(t, terraformOptions, "nsg_name")
 	// sshRuleName := terraform.Output(t, terraformOptions, "ssh_rule_name")
 	// httpsRuleName := terraform.Output(t, terraformOptions, "https_rule_name")
@@ -129,6 +103,8 @@ func testNsgRules(t *testing.T, terraformOptions *terraform.Options, workingDir 
 }
 
 func testVmSize(t *testing.T, terraformOptions *terraform.Options, resourceGroupName string) {
+	setEnvVars()
+
 	virtualMachineName := terraform.Output(t, terraformOptions, "vm_name")
 
 	expectedVMSize := compute.VirtualMachineSizeTypes(terraform.Output(t, terraformOptions, "vm_size"))
