@@ -71,10 +71,10 @@ func TestTerraformModule(t *testing.T) {
 }
 
 func setEnvVars() {
-	os.Setenv("AZURE_TENANT_ID", os.Getenv("ARM_TENANT_ID")
-	os.Setenv("AZURE_CLIENT_ID", os.Getenv("ARM_CLIENT_ID")
-	os.Setenv("AZURE_CLIENT_SECRET", os.Getenv("ARM_CLIENT_SECRET")
-	os.Setenv("AZURE_SUBSCRIPTION_ID", os.Getenv("ARM_SUBSCRIPTION_ID")
+	os.Setenv("AZURE_TENANT_ID", os.Getenv("ARM_TENANT_ID"))
+	os.Setenv("AZURE_CLIENT_ID", os.Getenv("ARM_CLIENT_ID"))
+	os.Setenv("AZURE_CLIENT_SECRET", os.Getenv("ARM_CLIENT_SECRET"))
+	os.Setenv("AZURE_SUBSCRIPTION_ID", os.Getenv("ARM_SUBSCRIPTION_ID"))
 }
 
 func testNsgRules(t *testing.T, terraformOptions *terraform.Options, workingDir string, resourceGroupName string) {
