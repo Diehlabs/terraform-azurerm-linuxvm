@@ -31,7 +31,6 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [azurerm_linux_virtual_machine.vm](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/linux_virtual_machine) | resource |
 | [azurerm_network_interface.vm](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_interface) | resource |
 | [azurerm_network_interface_security_group_association.vm](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_interface_security_group_association) | resource |
 | [azurerm_network_security_group.vm](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_security_group) | resource |
@@ -58,11 +57,9 @@ No modules.
 |------|-------------|
 | <a name="output_computer_name"></a> [computer\_name](#output\_computer\_name) | n/a |
 | <a name="output_ip_addresses"></a> [ip\_addresses](#output\_ip\_addresses) | n/a |
-| <a name="output_msi"></a> [msi](#output\_msi) | n/a |
 | <a name="output_nic_id"></a> [nic\_id](#output\_nic\_id) | n/a |
 | <a name="output_nsg"></a> [nsg](#output\_nsg) | n/a |
 | <a name="output_public_ip"></a> [public\_ip](#output\_public\_ip) | n/a |
-| <a name="output_vm_id"></a> [vm\_id](#output\_vm\_id) | n/a |
 | <a name="output_vm_name"></a> [vm\_name](#output\_vm\_name) | n/a |
 | <a name="output_vm_size"></a> [vm\_size](#output\_vm\_size) | n/a |
 <!-- END_TF_DOCS -->

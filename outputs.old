@@ -6,21 +6,28 @@ output "public_ip" {
   value = azurerm_public_ip.vm_pub_ip.ip_address
 }
 
+output "vm_id" {
+  value = azurerm_linux_virtual_machine.vm.id
+}
 
 output "vm_name" {
-  value = "test"
+  value = azurerm_linux_virtual_machine.vm.name
 }
 
 output "computer_name" {
-  value = "test01"
+  value = azurerm_linux_virtual_machine.vm.computer_name
 }
 
 output "nic_id" {
   value = azurerm_network_interface.vm.id
 }
 
+output "msi" {
+  value = azurerm_linux_virtual_machine.vm.identity
+}
+
 output "vm_size" {
-  value = "size"
+  value = azurerm_linux_virtual_machine.vm.size
 }
 
 output "nsg" {

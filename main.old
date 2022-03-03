@@ -10,6 +10,45 @@ resource "azurerm_network_interface" "vm" {
   }
   tags = var.tags
 }
+
+resource "azurerm_linux_virtual_machine" "vm" {
+  availability_set_id             = var.availability_set_id
+  name                            = var.vm_name
+  location                        = var.tags.location
+  resource_group_name             = var.rg_name
+  size                            = var.size
+  admin_username                  = "adminuser"
+  disable_password_authentication = true
+
+  network_interface_ids = [
+    azurerm_network_interface.vm.id,
+  ]
+
+  admin_ssh_key {
+    username   = "adminuser"
+    public_key = var.ssh_key
+  }
+
+  os_disk {
+    caching              = "ReadWrite"
+    storage_account_type = "Standard_LRS"
+  }
+
+  source_image_reference {
+    publisher = "Canonical"
+    offer     = "UbuntuServer"
+    sku       = "18.04-LTS"
+    version   = "latest"
+  }
+
+  identity {
+    type         = "UserAssigned"
+    identity_ids = var.identity_ids
+  }
+
+  tags = var.tags
+}
+
 resource "azurerm_public_ip" "vm_pub_ip" {
   name                = "${var.vm_name}-pubip"
   location            = var.tags.location
@@ -20,7 +59,7 @@ resource "azurerm_public_ip" "vm_pub_ip" {
 }
 
 resource "azurerm_network_security_group" "vm" {
-  name                = "test-nsg"
+  name                = "${azurerm_linux_virtual_machine.vm.name}-nsg"
   location            = var.tags.location
   resource_group_name = var.rg_name
 }
