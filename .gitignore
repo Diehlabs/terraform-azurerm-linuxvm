@@ -4,9 +4,11 @@
 .terraform.lock.hcl
 *.key
 .terraform
-**.tfstate*
+**/*.tfstate*
 
 .test-data
 TerraformOptions.json
 test_output
 test_output.log
+
+**/go.*

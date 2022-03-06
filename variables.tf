@@ -30,3 +30,10 @@ variable "identity_ids" {
   description = "List of identities to assign to the VM"
   type        = list(string)
 }
+
+
+variable "use_public_ip" {
+  description = "Set to true to assign a public IP to the VM NIC, defaults to false."
+  type        = bool
+  default     = false
+}

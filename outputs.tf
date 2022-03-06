@@ -3,7 +3,7 @@ output "ip_addresses" {
 }
 
 output "public_ip" {
-  value = azurerm_public_ip.vm_pub_ip.ip_address
+  value = var.use_public_ip ? azurerm_public_ip.vm_pub_ip[0].ip_address : null
 }
 
 output "vm_id" {

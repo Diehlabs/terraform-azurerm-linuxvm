@@ -36,8 +36,8 @@ func TestTerraformModule(t *testing.T) {
 	}
 
 	terraformVars := map[string]interface{}{
-		"gh_run_id": uniqueId,
-		"gh_repo": fmt.Sprintf("terratest-local-%s", uniqueId),
+		"unique_id": uniqueId,
+		"test_for": fmt.Sprintf("terratest-local-%s", uniqueId),
 	}
 
 	setupTesting(t, workingDir, terraformBinary, terraformVars)

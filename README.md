@@ -50,6 +50,7 @@ No modules.
 | <a name="input_ssh_key"></a> [ssh\_key](#input\_ssh\_key) | PEM formatted private ssh key | `string` | n/a | yes |
 | <a name="input_subnet_id"></a> [subnet\_id](#input\_subnet\_id) | n/a | `any` | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | n/a | `any` | n/a | yes |
+| <a name="input_use_public_ip"></a> [use\_public\_ip](#input\_use\_public\_ip) | Set to true to assign a public IP to the VM NIC, defaults to false. | `bool` | `false` | no |
 | <a name="input_vm_name"></a> [vm\_name](#input\_vm\_name) | n/a | `any` | n/a | yes |
 
 ## Outputs
