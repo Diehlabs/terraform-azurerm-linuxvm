@@ -1,4 +1,14 @@
+.DS_Store
+
 *.tfvars
 .terraform.lock.hcl
 *.key
 .terraform
+**/*.tfstate*
+
+.test-data
+TerraformOptions.json
+test_output
+test_output.log
+
+**/go.*

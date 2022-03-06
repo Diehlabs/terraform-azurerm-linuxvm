@@ -14,3 +14,12 @@ output "nsg_rules" {
 output "nsg_name" {
   value = module.linuxvm.nsg.name
 }
+
+output "vm_name" {
+  value = module.linuxvm.vm_name
+}
+
+
+output "vm_size" {
+  value = module.linuxvm.vm_size
+}

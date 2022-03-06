@@ -21,7 +21,7 @@ TODO:
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 2.82.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 2.98.0 |
 
 ## Modules
 
@@ -50,6 +50,7 @@ No modules.
 | <a name="input_ssh_key"></a> [ssh\_key](#input\_ssh\_key) | PEM formatted private ssh key | `string` | n/a | yes |
 | <a name="input_subnet_id"></a> [subnet\_id](#input\_subnet\_id) | n/a | `any` | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | n/a | `any` | n/a | yes |
+| <a name="input_use_public_ip"></a> [use\_public\_ip](#input\_use\_public\_ip) | Set to true to assign a public IP to the VM NIC, defaults to false. | `bool` | `false` | no |
 | <a name="input_vm_name"></a> [vm\_name](#input\_vm\_name) | n/a | `any` | n/a | yes |
 
 ## Outputs
@@ -64,4 +65,5 @@ No modules.
 | <a name="output_public_ip"></a> [public\_ip](#output\_public\_ip) | n/a |
 | <a name="output_vm_id"></a> [vm\_id](#output\_vm\_id) | n/a |
 | <a name="output_vm_name"></a> [vm\_name](#output\_vm\_name) | n/a |
+| <a name="output_vm_size"></a> [vm\_size](#output\_vm\_size) | n/a |
 <!-- END_TF_DOCS -->

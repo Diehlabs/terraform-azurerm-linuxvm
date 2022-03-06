@@ -3,7 +3,7 @@ output "ip_addresses" {
 }
 
 output "public_ip" {
-  value = azurerm_public_ip.vm_pub_ip.ip_address
+  value = var.use_public_ip ? azurerm_public_ip.vm_pub_ip[0].ip_address : null
 }
 
 output "vm_id" {
@@ -26,10 +26,14 @@ output "msi" {
   value = azurerm_linux_virtual_machine.vm.identity
 }
 
+output "vm_size" {
+  value = azurerm_linux_virtual_machine.vm.size
+}
+
 output "nsg" {
   value = {
     name = azurerm_network_security_group.vm.name
-    rules = { for name, rule in merge(local.nsg_rules, var.nsg_rules) :
+    rules = { for name, rule in var.nsg_rules :
       name => azurerm_network_security_rule.vm[name]
     }
   }
