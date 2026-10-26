@@ -13,15 +13,15 @@ TODO:
 ## Requirements
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.15.0 |
 | <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >= 2.77.0 |
 
 ## Providers
 
 | Name | Version |
-|------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 2.98.0 |
+| ---- | ------- |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | >= 2.77.0 |
 
 ## Modules
 
@@ -30,7 +30,7 @@ No modules.
 ## Resources
 
 | Name | Type |
-|------|------|
+| ---- | ---- |
 | [azurerm_linux_virtual_machine.vm](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/linux_virtual_machine) | resource |
 | [azurerm_network_interface.vm](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_interface) | resource |
 | [azurerm_network_interface_security_group_association.vm](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_interface_security_group_association) | resource |
@@ -41,22 +41,22 @@ No modules.
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
-| <a name="input_availability_set_id"></a> [availability\_set\_id](#input\_availability\_set\_id) | Optional availability set to add the VM to | `any` | `null` | no |
+| ---- | ----------- | ---- | ------- | :------: |
+| <a name="input_availability_set_id"></a> [availability\_set\_id](#input\_availability\_set\_id) | Optional availability set to add the VM to | `string` | `null` | no |
 | <a name="input_identity_ids"></a> [identity\_ids](#input\_identity\_ids) | List of identities to assign to the VM | `list(string)` | n/a | yes |
 | <a name="input_nsg_rules"></a> [nsg\_rules](#input\_nsg\_rules) | Additional NSG rules to add to the VM network interface | `map(any)` | `{}` | no |
-| <a name="input_rg_name"></a> [rg\_name](#input\_rg\_name) | n/a | `any` | n/a | yes |
-| <a name="input_size"></a> [size](#input\_size) | n/a | `string` | `"Standard_B1ls"` | no |
-| <a name="input_ssh_key"></a> [ssh\_key](#input\_ssh\_key) | PEM formatted private ssh key | `string` | n/a | yes |
-| <a name="input_subnet_id"></a> [subnet\_id](#input\_subnet\_id) | n/a | `any` | n/a | yes |
-| <a name="input_tags"></a> [tags](#input\_tags) | n/a | `any` | n/a | yes |
+| <a name="input_rg_name"></a> [rg\_name](#input\_rg\_name) | Name of the resource group to create resources in | `string` | n/a | yes |
+| <a name="input_size"></a> [size](#input\_size) | Azure VM size | `string` | `"Standard_B1ls"` | no |
+| <a name="input_ssh_key"></a> [ssh\_key](#input\_ssh\_key) | OpenSSH formatted public ssh key for the admin user | `string` | n/a | yes |
+| <a name="input_subnet_id"></a> [subnet\_id](#input\_subnet\_id) | ID of the subnet for the VM network interface | `string` | n/a | yes |
+| <a name="input_tags"></a> [tags](#input\_tags) | Tags to apply to resources; must include a location key, which sets the Azure region | `map(string)` | n/a | yes |
 | <a name="input_use_public_ip"></a> [use\_public\_ip](#input\_use\_public\_ip) | Set to true to assign a public IP to the VM NIC, defaults to false. | `bool` | `false` | no |
-| <a name="input_vm_name"></a> [vm\_name](#input\_vm\_name) | n/a | `any` | n/a | yes |
+| <a name="input_vm_name"></a> [vm\_name](#input\_vm\_name) | Name of the VM; also used as a prefix for related resources | `string` | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
-|------|-------------|
+| ---- | ----------- |
 | <a name="output_computer_name"></a> [computer\_name](#output\_computer\_name) | n/a |
 | <a name="output_ip_addresses"></a> [ip\_addresses](#output\_ip\_addresses) | n/a |
 | <a name="output_msi"></a> [msi](#output\_msi) | n/a |
