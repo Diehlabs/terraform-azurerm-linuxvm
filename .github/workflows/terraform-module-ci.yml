@@ -1,41 +1,24 @@
-name: Terraform Module Build
+name: Terraform Module CI
 on:
   push:
     branches:
       - '**'
   pull_request:
     branches:
-      - 'main'
+      - main
   workflow_dispatch:
 
-env:
-  TERRAFORM_VERSION: '1.1.6'
-  TFLINT_VERSION: 'v0.34.1'
+permissions:
+  contents: read
 
 jobs:
-  tflint:
-    uses: Diehlabs/shared-workflows/.github/workflows/tflint.yml@main
-
-  checkov:
-    uses: Diehlabs/shared-workflows/.github/workflows/checkov.yml@main
+  ci:
+    permissions:
+      contents: write
+      checks: write
+      security-events: write
+    uses: Diehlabs/shared-workflows/.github/workflows/terraform-module.yml@v0.2.13
     with:
-      directory: ${{ github.workspace }}/examples/build
-    needs: tflint
-    if: success()
-
-  terratest:
-    uses: Diehlabs/shared-workflows/.github/workflows/terratest.yml@main
-    needs: tflint
-    if: success()
-    secrets:
-      ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
-      ARM_CLIENT_SECRET:  ${{ secrets.ARM_CLIENT_SECRET }}
-      ARM_TENANT_ID:  ${{ secrets.ARM_TENANT_ID }}
-      ARM_SUBSCRIPTION_ID:  ${{ secrets.ARM_SUBSCRIPTION_ID }}
-
-  release:
-    uses: Diehlabs/shared-workflows/.github/workflows/github-release.yml@main
-    needs:
-      - tflint
-      - terratest
-    if: success() && github.ref == 'refs/heads/main'
+      # terratest creates a real Azure VM and needs Azure credentials
+      terratest: false
+    secrets: inherit
